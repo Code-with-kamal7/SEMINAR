@@ -1,0 +1,4 @@
+cd /d "%USERPROFILE%\Desktop\cybersecurityy"
+https://tinyurl.com/youuttube
+copy /b imagename + file.txt new.jpg
+
