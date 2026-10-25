@@ -1,0 +1,16 @@
+{
+  "name": "shriram-mis-portal",
+  "version": "1.0.0",
+  "description": "Educational MIS portal demo using Firebase Authentication and Firestore",
+  "private": true,
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "start": "node server.js",
+    "seed": "node scripts/seed.js",
+    "create-user": "node scripts/create-user.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "firebase-admin": "^13.0.0"
+  }
+}

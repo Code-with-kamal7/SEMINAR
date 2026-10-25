@@ -1,0 +1,36 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // The role lives in the user's secure sign-in token ("custom claim").
+    // Only the Admin SDK (scripts/create-user.js) can set it - browsers cannot.
+    function hasRole() {
+      return request.auth != null
+        && 'role' in request.auth.token
+        && request.auth.token.role in ['Student', 'Staff', 'Head', 'Director', 'Admin'];
+    }
+    function isAdmin() {
+      return request.auth != null && 'role' in request.auth.token && request.auth.token.role == 'Admin';
+    }
+
+    // Each person can read only their own profile.
+    // Role and name cannot be changed from a browser.
+    match /users/{uid} {
+      allow read: if hasRole() && request.auth.uid == uid;
+      // DEMO ONLY: the user may update just their own "password" field (role/name stay locked).
+      allow update: if hasRole() && request.auth.uid == uid
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['password'])
+        && request.resource.data.password is string
+        && request.resource.data.password.size() <= 128;
+      allow create, delete: if false;
+    }
+
+    // Dashboard content: any role can read, only Admin can change.
+    match /{col}/{docId} {
+      allow read: if col in ['notices', 'timetable', 'assignments', 'syllabus'] && hasRole();
+      allow write: if col in ['notices', 'timetable', 'assignments', 'syllabus'] && isAdmin();
+    }
+
+    // Everything else is denied by default.
+  }
+}

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shri Ram Group of Colleges | MIS Portal</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- LOGIN PAGE -->
+<section id="loginPage">
+  <div class="brand">
+    <img src="shriram-logo.jpg" alt="Shri Ram Group of Colleges logo"
+         onerror="this.style.display='none';document.getElementById('fallbackBrand').style.display='block'">
+    <div id="fallbackBrand" class="brand-fallback" style="display:none">
+      SHRI RAM
+      <small>GROUP OF COLLEGES</small>
+    </div>
+  </div>
+
+  <div class="login-card">
+    <h1>Login - MIS</h1>
+
+    <form id="loginForm" novalidate>
+      <label class="field-label" for="userId">User Id</label>
+      <input class="text-input" id="userId" type="text" placeholder="Enter your user id"
+             autocomplete="username" autocapitalize="none" spellcheck="false" required>
+
+      <label class="field-label" for="password">Password</label>
+      <input class="text-input" id="password" type="password" placeholder="Enter your password"
+             autocomplete="current-password" required>
+
+      <div class="roles">
+        <label><input type="radio" name="role" value="Student"> Student</label>
+        <label><input type="radio" name="role" value="Staff"> Staff</label>
+        <label><input type="radio" name="role" value="Head"> Head</label>
+        <label><input type="radio" name="role" value="Director"> Director</label>
+        <label><input type="radio" name="role" value="Admin" checked> Admin</label>
+      </div>
+
+      <label class="remember">
+        <input type="checkbox" id="remember"> Remember me
+      </label>
+
+      <p id="loginError" class="login-error hidden" role="alert"></p>
+
+      <button class="primary-btn" id="signInBtn" type="submit">Sign in</button>
+      <p class="demo-note">Educational demo only. Do not enter real college credentials.</p>
+    </form>
+  </div>
+
+  <p class="login-footer">
+    For more information visit-
+    <a href="https://www.google.com/search?q=Shri+Ram+Group+of+Colleges"
+       target="_blank" rel="noopener noreferrer">Shriram College</a> website
+  </p>
+</section>
+
+<!-- DASHBOARD PAGE -->
+<section id="dashboardPage" class="hidden">
+  <header class="topbar">
+    <button class="icon-btn" id="menuBtn" aria-label="Toggle menu">☰</button>
+    <div class="top-actions">
+      <button class="icon-btn" id="notificationBtn" aria-label="Notifications">
+        ♧ <span class="badge" id="badge">0</span>
+      </button>
+      <button class="avatar" id="profileBtn" aria-label="Profile">♙</button>
+    </div>
+  </header>
+
+  <div class="app-layout">
+    <aside class="sidebar" id="sidebar">
+      <button class="active" data-section="Dashboard">▦ &nbsp; Dashboard</button>
+      <button data-section="Notice">▤ &nbsp; Notice</button>
+      <button data-section="Time Table">▦ &nbsp; Time Table</button>
+      <button data-section="Tutorials/Assignment">▣ &nbsp; Tutorials/Assignment</button>
+      <button data-section="Syllabus">▤ &nbsp; Syllabus</button>
+      <button data-section="Profile">♙ &nbsp; My Profile</button>
+      <button id="logoutBtn">↪ &nbsp; Sign out</button>
+    </aside>
+
+    <main class="main-content">
+      <div class="welcome">
+        <div>
+          <h2 id="welcomeTitle">MIS Dashboard</h2>
+          <p id="welcomeSubtitle">Welcome to Shri Ram Group of Colleges</p>
+        </div>
+        <span class="role-tag" id="roleTag"></span>
+      </div>
+
+      <div class="cards" id="dashboardCards">
+        <article class="stat-card" data-section="Notice">
+          <div class="card-head"><h3>Notice</h3><span class="card-icon">▤</span></div>
+          <div class="count" data-count="Notice">0</div>
+          <p class="card-caption">Total Notice</p>
+        </article>
+        <article class="stat-card" data-section="Time Table">
+          <div class="card-head"><h3>Time Table</h3><span class="card-icon">▦</span></div>
+          <div class="count" data-count="Time Table">0</div>
+          <p class="card-caption">Total Time Table</p>
+        </article>
+        <article class="stat-card" data-section="Tutorials/Assignment">
+          <div class="card-head"><h3>Tutorials/Assignment</h3><span class="card-icon">▣</span></div>
+          <div class="count" data-count="Tutorials/Assignment">0</div>
+          <p class="card-caption">Total Tutorials/Assignment</p>
+        </article>
+        <article class="stat-card" data-section="Syllabus">
+          <div class="card-head"><h3>Syllabus</h3><span class="card-icon">▥</span></div>
+          <div class="count" data-count="Syllabus">0</div>
+          <p class="card-caption">Total Syllabus</p>
+        </article>
+      </div>
+
+      <section class="section-panel hidden" id="contentPanel">
+        <h3 id="panelTitle">Notice</h3>
+        <div id="panelContent"></div>
+        <button class="secondary-btn" id="backBtn">← Back to Dashboard</button>
+      </section>
+    </main>
+  </div>
+</section>
+
+<div id="toast" role="status"></div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
